@@ -5,11 +5,11 @@ notifications:
   email: false
   
 install:
-  - pip install pep8 
+  - pip install pycodestyle 
   - pip install autopep8
 
 script:
-  - num_errors_before=`find . -name \*.py -exec pep8 --ignore=E402 {} + | wc -l`
+  - num_errors_before=`find . -name \*.py -exec pycodestyle --ignore=E402 {} + | wc -l`
   - echo $num_errors_before
 
   - cd "$TRAVIS_BUILD_DIR"
@@ -18,7 +18,7 @@ script:
   - git checkout $TRAVIS_BRANCH
 
   - find . -name \*.py -exec autopep8 --recursive --aggressive --in-place {} +
-  - num_errors_after=`find . -name \*.py -exec pep8 --ignore=E402 {} + | wc -l`
+  - num_errors_after=`find . -name \*.py -exec pycodestyle --ignore=E402 {} + | wc -l`
   - echo $num_errors_after
 
   - |
@@ -29,4 +29,4 @@ script:
     fi
   - cd "$TRAVIS_BUILD_DIR"
 
-  - find . -name \*.py -exec pep8 --ignore=E402 {} +
+  - find . -name \*.py -exec pycodestyle --ignore=E402 {} +
